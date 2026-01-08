@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zen koin lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #fbf9ed;
+            color: #0e2439;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* 侧边导航栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #0e2439;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(251, 249, 237, 0.2);
+        }
+        
+        .sidebar-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-logo-text {
+            color: #fbf9ed;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            color: rgba(251, 249, 237, 0.7);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(251, 249, 237, 0.1);
+            color: #fbf9ed;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: rgba(251, 249, 237, 0.15);
+            color: #fbf9ed;
+            font-weight: 600;
+        }
+        
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background-color: #0e2439;
+            color: #fbf9ed;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            max-width: 1200px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(14, 36, 57, 0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo-image {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .logo-text {
+            font-size: 28px;
+            font-weight: bold;
+            color: #0e2439;
+            letter-spacing: 1px;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #0e2439;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 0 20px;
+            scroll-margin-top: 20px;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #0e2439;
+            border-left: 4px solid #0e2439;
+            padding-left: 15px;
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 25px 0 15px;
+            color: #0e2439;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .values-list {
+            list-style-type: none;
+        }
+        
+        .values-list li {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(14, 36, 57, 0.05);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .values-list li:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pillars {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .pillar {
+            flex: 1;
+            min-width: 300px;
+            padding: 25px;
+            background-color: rgba(14, 36, 57, 0.05);
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        
+        .pillar:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pillar h3 {
+            margin-top: 0;
+            color: #0e2439;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: #0e2439;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-link {
+            color: #0e2439;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #1a4b7a;
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-top: 2px solid rgba(14, 36, 57, 0.1);
+            color: #0e2439;
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 70px 10px 10px;
+            }
+            
+            .logo-image {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            section {
+                padding: 0 10px;
+            }
+            
+            .pillar {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 移动端菜单按钮 -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    
+    <!-- 侧边导航栏 -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo.png" alt="zen koin lab logo">
+            <div class="sidebar-logo-text">無相實驗室</div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#introduction" onclick="closeMenuOnMobile()">Introduction</a></li>
+            <li><a href="#mission" onclick="closeMenuOnMobile()">Mission</a></li>
+            <li><a href="#vision" onclick="closeMenuOnMobile()">Vision</a></li>
+            <li><a href="#values" onclick="closeMenuOnMobile()">Values</a></li>
+            <li><a href="#strategic-focus" onclick="closeMenuOnMobile()">Strategic Focus</a></li>
+            <li><a href="#contact" onclick="closeMenuOnMobile()">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <header>
+            <div class="logo-container">
+                <img src="logo.png" alt="zen koin lab logo" class="logo-image">
+                <div class="logo-text">無相實驗室</div>
+            </div>
+            <p class="tagline">Intelligent Infrastructure for a Private Future.</p>
+        </header>
+        
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p><strong>zen koin lab</strong> is a deep-technology research lab operating at the cutting-edge intersection of artificial intelligence and advanced cryptography. We architect foundational infrastructure that is inherently secure, highly scalable, and built upon comprehensive privacy frameworks. Our mission is to pioneer a new paradigm where decentralized systems are not only trustworthy and transparent but also intelligently autonomous and accessible to all. We are building the core components for a future defined by <span class="highlight">verifiable confidentiality</span> and empowered community growth.</p>
+            
+            <p>In fulfilling this mission, our key <span class="highlight">Roles and Responsibilities</span> extend beyond engineering. We are committed to <span class="highlight">educating the public</span> on the critical importance and mechanics of blockchain privacy technologies, <span class="highlight">sharing technical resources and knowledge</span> openly with the developer community, and <span class="highlight">uniting like-minded contributors</span> who share our vision for collaborative decentralized development.</p>
+        </section>
+        
+        <section id="mission">
+            <h2>Mission</h2>
+            <p>Our mission is to democratize access to secure, intelligent, and scalable decentralized technologies. We achieve this by engineering robust, privacy-preserving infrastructure and strategically deploying AI to enhance user experience, optimize network operations, and foster sustainable ecosystem growth. We are committed to equipping developers, creators, and organizations with the tools required to build and participate in a more private, efficient, and collaborative Web3 future.</p>
+        </section>
+        
+        <section id="vision">
+            <h2>Vision</h2>
+            <p>We envision a world where decentralized networks and artificial intelligence coexist synergistically to create a <span class="highlight">global digital commons</span> that is both intelligently autonomous and fundamentally trustworthy. We aim to be the foundational layer for this future—a world where individuals have sovereign control over their data, where verifiable confidentiality is a standard, and where AI acts as a <span class="highlight">trusted collaborator</span> in community governance and value creation.</p>
+        </section>
+        
+        <section id="values">
+            <h2>Values</h2>
+            <ul class="values-list">
+                <li>
+                    <h3>User Sovereignty & Privacy by Design</h3>
+                    <p>We believe privacy is a fundamental right. We architect our systems to embed privacy-by-design principles, researching and deploying a spectrum of cutting-edge privacy-enhancing technologies (PETs) to ensure users retain ultimate control and ownership over their digital assets.</p>
+                </li>
+                <li>
+                    <h3>Technological Rigor & Practical Intelligence</h3>
+                    <p>We are committed to building with technical excellence and rigorous research. Our application of AI is purposeful and pragmatic, focusing on solving real-world problems—automating complex processes and providing actionable insights—to create tangible value.</p>
+                </li>
+                <li>
+                    <h3>Collaborative Community</h3>
+                    <p>We believe the most powerful innovations emerge from open collaboration. We foster an inclusive ecosystem where contributors are valued, and governance is transparent and participatory.</p>
+                </li>
+                <li>
+                    <h3>Responsible Stewardship & Integrity</h3>
+                    <p>We operate with the highest integrity and recognize the profound impact of our technology. We are committed to ethical AI development, algorithmic transparency, and responsible stewardship of the decentralized infrastructure we build.</p>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="strategic-focus">
+            <h2>Strategic Focus</h2>
+            <p>As a deep-tech lab in its initial stages, <strong>zen koin lab</strong> focuses on core research and building market presence. Our current service activities are centered on three flexible pillars:</p>
+            
+            <div class="pillars">
+                <div class="pillar">
+                    <h3>Protocol Engineering and Open-Source Tooling</h3>
+                    <p>for fundamental infrastructure</p>
+                </div>
+                <div class="pillar">
+                    <h3>Ecosystem Nurturing</h3>
+                    <p>via community support and decentralized governance initiatives</p>
+                </div>
+                <div class="pillar">
+                    <h3>Strategic Technical Consultation</h3>
+                    <p>for partners seeking expertise in privacy architecture and AI integration</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <a href="mailto:contact@zkoinlab.org" class="contact-link">contact@zkoinlab.org</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">💻</span>
+                    <a href="https://github.com/zkoinlab" target="_blank" rel="noopener noreferrer" class="contact-link">https://github.com/zkoinlab</a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 zen koin lab. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 移动端菜单切换
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        // 移动端点击导航项后关闭菜单
+        function closeMenuOnMobile() {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.remove('active');
+            }
+        }
+        
+        // 高亮当前激活的导航项
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('.nav-menu a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
