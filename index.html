@@ -436,15 +436,19 @@
             });
         });
         
-        // 平滑滚动
+        // 平滑滚动（仅对内部锚点链接）
         document.querySelectorAll('.nav-menu a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                const href = this.getAttribute('href');
+                // 只对页面内部锚点链接应用平滑滚动
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(href);
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
+                // 外部链接（http/https）会正常打开，不阻止默认行为
             });
         });
     </script>
