@@ -1,0 +1,723 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>16words-of-web3</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2e2405f4-12ca-8012-844f-ca3528c37e3e" class="page sans"><header><img class="page-cover-image" src="%E4%B9%A6.png" style="object-position:center 64.42%"/><h1 class="page-title" dir="auto">16words-of-web3</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8062-9562-e42885c4128d" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80e4-a67c-fb99a748a9f1" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="f676cf46-b363-421a-ab9e-486abe7bba44" class="block-color-default">前言</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8039-ac01-fe3b56533366" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80bc-940e-d1e3c5084b6b" class=""><em>Preface</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-805a-aacb-eb3b98d2c5c4" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80b7-8be3-e830d9596d1c" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-806c-aa71-e59da1e775cd" class="">16个字讲清web3——</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8047-8761-f318416e6e19" class="">书/码/区/节</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8041-bf0d-f8be41c7914f" class="">/链/币/包/所</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-805d-ac68-c291abe0eb9f" class="">/机/用/迷/桥</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8007-aa29-d174795dae93" class="">/库/物/规/私</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80d8-b343-fadc96673fed" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-802f-ac7d-e2cca0b8c119" class="">16words of web3: </p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-807e-b544-c7b3e47f56be" class="">Whitepaper /Code /Community /Node </p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80a5-858f-ed497dbaa5ed" class="">/Chain /Coin/ Wallet /Exchange </p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80c5-90c5-e9fef73aaebb" class="">/Machine /Application /Meme /Bridge </p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80c2-a5ff-d428ca403ecd" class="">/Treasury /RWA /Regulation /Privacy</p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8024-833a-d9ffe1fe873d" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-806a-8f1f-e48c01a25431" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-801e-af48-fc5788591ff4" class="">第一个字：书。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80d5-9736-e57dd773ae9c" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-8095-8287-d0e7f05bb023" class=""><em>Word 1: Whitepaper </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80f8-86e1-cdc1a1958a46" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-808e-923f-f07c1314c175" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-806f-908e-ede406546387" class="">一切的一切，从中本聪的那份白皮书开始……</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8041-963f-fd2f8ac307e3" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8042-89ac-fe07cd17cf04" class=""><em>Everything, starting from Satoshi Nakamoto&#x27;s white paper…</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80ee-9384-de2428635440" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80f8-92c6-ffbe94d6f808" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80d6-aaf1-e7b16c564970" class="">比特币白皮书由中本聪于 2008 年发布，提出了一种无需可信第三方、通过点对点网络实现的去中心化电子现金系统。它阐述了如何利用工作量证明和链式结构来防止双花，如何让任何人在全球范围内以低成本、安全、不可篡改的方式转移价值。它从技术逻辑、经济逻辑和治理逻辑上是自洽的和完备的。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80ce-b0a7-d1944a10186d" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80a0-9e2a-fd7c796e90de" class=""><em>Published in 2008, the Bitcoin whitepaper by Satoshi Nakamoto introduced a peer-to-peer electronic cash system that requires no trusted intermediaries. It outlines how proof-of-work and a chained structure prevent double spending and enable secure, low-cost, and tamper-resistant global value transfer. Technically, economically, and in terms of governance, the design is internally consistent and complete.</em></p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e2405f4-12ca-8057-a717-de7e223bd6b9" class="image"><a href="image.png"><img style="width:709.9937744140625px" src="image.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80fc-b2c7-ec7626912d2a" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80b1-b289-d0150d29a2de" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80eb-bb12-d7c92ac50864" class="">比特币白皮书最早发布在2008年10月31日于密码学邮件列表中 <a href="https://t.co/Tm1WSglpgg">http://metzdowd.com</a>，随后由中本聪发布到了P2PFoundation网站。</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80cc-8051-e5217dd239c0" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80ae-be78-c18ef5365484" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8023-8312-e74fc5332b3b" class=""><em>The Bitcoin whitepaper was first published on October 31, 2008, to the cryptography mailing list at </em><a href="https://t.co/Tm1WSglpgg">http://metzdowd.com</a><em>, and later reposted by Satoshi Nakamoto on the </em>P2PFoundation<em> website. </em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80e1-ad85-dba640d78fd1" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8014-9d60-eabb01945537" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-804c-bffe-e9c29f4a8f96" class="">在我们看来，白皮书是“共识”的起点，如果你要有人追随你，那么你要清晰地描述你的愿景，这是来自计算机极客世界的规则。Bitcoin，前缀是bit，重点也是bit，先有bit，然后再有coin。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-804c-b12a-fe496c7bf878" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-807d-abad-caf5517d8b81" class=""><em>In our view, the whitepaper marks the starting point of consensus: if you want others to follow, you must clearly articulate your vision—a rule deeply rooted in hacker and computer culture. Bitcoin begins with “bit,” and its emphasis is on bits first; only after bits come coins.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80cf-9824-d184d668f440" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-805a-bb77-cc6e369d9045" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-8094-9b4f-dfb9b07e2a8c" class="">第二个字，码。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8026-a9ec-d4581a80835b" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-8099-9f41-d8693e39e1cd" class=""><em>Word 2: Code</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8000-a10c-f27ec30c8527" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-807f-9bf5-f0f770cc43d3" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-805b-b14f-fd77d921b7c8" class="">比特币源代码是由比特币白皮书的作者中本聪最初用 C++编写，集成了工作量证明挖矿、区块链数据结构、UTXO 交易模型、P2P 网络协议、脚本系统等关键组件。</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8010-ba6c-ce339a707aad" class="">2009年1月8日，中本聪（Satoshi Nakamoto）在密码学邮件列表上首次宣布比特币软件v0.1的发布，标志着比特币网络的正式启动。</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80ce-b863-dcdf9df92e5b" class="">目前，Bitcoin 源代码存放于github，任何人都可以免费获取，然后部署在自己的电脑上。<a href="https://t.co/A4NYLPVH1J">https://github.com/bitcoin/bitcoin</a></p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8044-ad06-f585e345ebd0" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8043-bf57-f804d50c450a" class=""><em>The Bitcoin source code was originally written in C++ by Satoshi Nakamoto, the author of the Bitcoin whitepaper. It integrates core components such as proof-of-work mining, the blockchain data structure, the UTXO transaction model, peer-to-peer networking, and a scripting system. </em></p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-809f-aabd-c756dfd30fa2" class="">On January 8, 2009, Satoshi Nakamoto announced the release of Bitcoin software version 0.1 on the cryptography mailing list, marking the official launch of the Bitcoin network.</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80dd-829b-c8580e11a8cc" class=""><em>Currently, the code is hosted on GitHub and is freely accessible, allowing anyone to download it and run it on their own computer. </em><a href="https://t.co/A4NYLPVH1J">https://github.com/bitcoin/bitcoin</a></p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e2405f4-12ca-8015-b6cc-da6b819b8c2d" class="image"><a href="image%201.png"><img style="width:710px" src="image%201.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-804c-9f00-f0ea63c8eacc" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80dc-8d07-c4a626c7b70f" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80d9-9ac7-e4efbb1ca742" class="">说到<a href="https://x.com/github">@github</a> 和代码开源，可以上溯到互联网诞生之初。开源是一种精神，甚至是一种信仰。比特币的诞生是开源共享精神的延续和进化。</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8077-8e58-dc30f9bde347" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8001-b724-c940b66764c1" class="">极客改变世界。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80f7-8c24-feb7a4574485" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-800c-b83c-cf71af9f4c86" class=""><em>When it comes to GitHub and open-source code, its roots can be traced back to the very early days of the internet. Open source is not just a development model, but a spirit. The emergence of Bitcoin is a continuation and evolution of this open, shared ethos. </em></p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80b9-89aa-d02389e8d17c" class=""><em>Hackers change the world.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-807b-90ed-e286858f9e44" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8006-a2be-fb1cc6798733" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80f7-bb91-e1feb94a8979" class="">开源精神是计算机世界的核心灵魂，它主张知识自由、代码共享、协作创新与社区自治：每个人都可以自由使用、研究、修改和分发软件，任何改进都应回馈社区；它相信“众人拾柴火焰高”，通过透明、开放、去中心化的方式，让技术摆脱单一厂商控制，快速演进并惠及全人类。如Linus Torvalds开发<a href="https://x.com/Linux">@Linux</a></p></div><div style="display:contents" dir="ltr"><figure id="2e2405f4-12ca-8028-8316-c3b19bac9996" class="image" style="text-align:left"><a href="1d20c577-f7c3-4037-9d98-38f3ead386ad.png"><img style="width:288px" src="1d20c577-f7c3-4037-9d98-38f3ead386ad.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-803a-9df8-fc15f08fe08a" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80da-8d35-d4569077123d" class=""><em>The open-source ethos is the core soul of the computing world. It advocates knowledge freedom, code sharing, collaborative innovation, and community self-governance: anyone is free to use, study, modify, and distribute software, and any improvement should be contributed back to the community. It is grounded in the belief that collective effort outperforms isolated control—using transparency, openness, and decentralization to free technology from single-vendor dominance, accelerate its evolution, and benefit humanity at large, as exemplified by Linus Torvalds and the creation of Linux.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80ad-8670-c33ddb5f3120" class="">
+</p></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8051-a80a-ea19f477691a" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8076-917e-e4eb76e811b2" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-800e-86ee-d8ac0534e565" class="">第三个字，区。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80eb-b067-cb458e7a497b" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-806b-b977-c7af86f74715" class=""><em>Word 3: Community</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-806b-ab1f-e0b9eb3d7710" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8076-899b-c5c2d0bc0257" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80f1-8dcc-e12b078d1668" class="">有了白皮书和源代码，加密社区进行了研究和讨论，逐渐吸引了越来越多的认同者。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80ef-84ce-d3afc8079e7e" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8037-9d90-eecdfd344fff" class=""><em>With the whitepaper and source code in place, the crypto community began to study, discuss, and iterate on the system, gradually attracting a growing number of believers. </em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8031-ac56-e4f788cf04ed" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80cb-8dab-f2d49645b6dd" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8081-8966-f40a8255c9ff" class="">加密行业是基于“共识”而存在的行业。一切价值、规则与秩序建立在“共识”之上：人们共同认可某条链的安全性、某种资产的价值、某个协议的规则，网络得以运转。没有共识，就没有区块的延续、代币的价值和协议的生命力。当共识形成，就能在全球范围内创造出无需中心化机构、却依然可信自洽的数字经济体系。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80f2-90ba-eab603db2b5c" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80d1-ae88-f9baf809faec" class=""><em>The crypto industry exists on the foundation of consensus. All value, rules, and order are built upon shared agreement: collective belief in a chain’s security, an asset’s value, and a protocol’s rules allows the network to function. Without consensus, there is no continuation of blocks, no value in tokens, and no vitality in protocols. Once consensus forms, a globally coordinated digital economic system can emerge—one that requires no centralized authority, yet remains internally consistent and trustworthy.</em></p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e2405f4-12ca-8051-b5fd-e8fc3d026bb9" class="image"><a href="image%202.png"><img style="width:709.9874877929688px" src="image%202.png"/></a><figcaption>共识 C<em>onsensus</em></figcaption></figure></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80fb-a422-e816ce53ef47" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80ca-9f58-d10b7fc0de86" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-8045-b7e5-c1f4a41e7731" class="">第四个字，节。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8068-8c04-d6c5abb15863" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e2405f4-12ca-8009-be35-d07024c50ebb" class=""><em>Word 4: Node </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8001-abe7-da3ca90c11d0" class="column-list"><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-8069-bb48-dcfc0d7ae5e4" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-801c-9a2c-e3f57569562c" class="">当你认同了社区共识，复制了根据白皮书写成的那份代码，在满足相应配置的主机（服务器甚至个人电脑PC）把代码跑起来，链接到网络，那你就成为了一个节点。</p></div><div style="display:contents" dir="ltr"><figure id="2e2405f4-12ca-8002-a932-cd7da5f652a5" class="image"><a href="image%203.png"><img style="width:336px" src="image%203.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e2405f4-12ca-80c6-b6dd-d138debfaeff" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8055-88d4-f955b848ec0f" class=""><em>Once you agree with the community consensus, copy the code written according to the white paper, run the code on a host (server or even a personal computer PC) with the appropriate configuration, and connect it to the network, then you become a node.</em></p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-803f-af70-ffbc7d3a9c27" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8032-b1f5-e3348851e42b" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80d1-8344-d3e3aa432d64" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8002-8412-e8da0abcd42e" class="">第五个字，链。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8062-a5ce-e4ff2975683e" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80f5-9957-d1667bcad94d" class=""><em>Word 5: Chain</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8036-bc3d-e6ffd51aaa57" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80c0-8941-de7cec413115" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-804d-aea5-ca2fe0329f50" class="">当无数节点都运行着同一份规则相同的代码，并通过 P2P 网络相互连接、互相校验时，一个神奇的事情发生了：所有节点按照「最长诚实链」原则，协同维护着同一条不断向前延伸的区块链。</p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-808e-ba53-e2c7297481b5" class="">这条链不是哪个人、哪台服务器、哪个公司拥有的，而是由全球分散在不同国家、不同时区、不同利益主体的数万台节点共同计算、共同见证、共同背书的「全球单一事实版本」。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8042-9d67-d568f98f7fb0" class="image"><a href="image%204.png"><img style="width:336px" src="image%204.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806b-89f0-f626f094f675" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8023-a54b-c4d94162bda1" class=""><em>When countless nodes run the same code under the same rules, connect to one another via a peer-to-peer network, and continuously verify each other, something remarkable happens: following the principle of the longest honest chain, all nodes collectively maintain a single blockchain that keeps extending forward.</em></p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80f7-b3db-e0c26a89f47c" class=""><em>This chain is not owned by any individual, server, or company. It is a “single global version of truth,” jointly computed, witnessed, and endorsed by tens of thousands of nodes distributed across different countries, time zones, and economic interests around the world.</em></p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80bf-8c1f-ef7b5f8ee0df" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806b-b681-d44ba7fcd121" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-800c-a959-c11132d52088" style="width:100.00000000000003%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80fd-8daa-e5db1d906100" class="">它按时间顺序把每一笔交易打包进区块，再用哈希指针首尾相连，形成一条不可篡改、不可倒转的链式结构。只要你同步了这条链，你就拥有了全网从创世区块至今的完整账本；只要大多数节点仍然诚实，这条链就永远向前，而不会向后回滚。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80d2-902e-fd74e729586e" style="width:200.00000000000009%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80d2-8563-fb09d018bbd4" class=""><em>It orders every transaction in time, packages them into blocks, and links those blocks together with hash pointers, forming a chain structure that is tamper-resistant and irreversible. Once you synchronize this chain, you possess the complete ledger of the entire network—from the genesis block to the present. As long as the majority of nodes remain honest, the chain continues to move forward and will not roll back.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8034-aad4-fa23342336d3" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8042-bccc-db01625e4ca4" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80b4-ba78-ed67ec9fc289" class="">这就是比特币最硬核的去中心化体现：没有中心，却达成了最强的全局一致性；没有信任，却实现了最强的抗攻击性。链一旦启动，就只认规则、不认人，任何人包括中本聪本人也无法让它停下来、改过去、假装没发生。这，就是「区块链」真正的链。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8019-a86d-e46d8b1b79e8" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-807a-b22e-cf076c7c010a" class=""><em>This is the most hard-core expression of decentralization in Bitcoin: no center, yet the strongest form of global consensus; no trust, yet the strongest resistance to attack. Once the chain is launched, it recognizes rules, not people. No one—not even Satoshi Nakamoto—can stop it, rewrite the past, or pretend something never happened. This is what “blockchain” truly means by a chain.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806f-95bc-fd87bca67784" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806e-beb8-c0dd0a772b69" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80aa-bedb-c1a4a47a1309" class="">第六个字，币。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8023-9c0a-c7af221616cb" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80b4-86b9-e78388336b4d" class=""><em>Word 6: Coin</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-808b-a479-db4b343df7aa" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80d0-82c5-e457c8e27625" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8057-abb8-e4df17a255ce" class="">运行节点，等于提供算力。节点运行者总不能“用爱发电”，那么如何获得回报呢？在链上，对每一个由节点产出、被全链确认的区块，网络赋予产出该区块的节点以奖励，这就是最初的比特币。它不是由某个国家发行，也不是由某个公司控制，而是由数学、算力与规则共同铸造。</p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8042-a265-e0e94ec369f9" class="">随着时间推移，更多人愿意以现实世界的商品与服务交换这种数字资产，“币”因此获得了价格与流动性。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80dd-b0e7-c0e9c07defb5" class="image"><a href="image%205.png"><img style="width:331.9937438964844px" src="image%205.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8019-9208-c3da944f676a" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80db-950b-d77d286e978d" class=""><em>Running a node means contributing computational power. But node operators cannot sustain the network purely out of goodwill—so how are they rewarded? On-chain, for every block produced by a node and confirmed by the network, the protocol grants a reward to the block producer. This is how Bitcoin was originally issued. It is not minted by any state, nor controlled by any company, but created through mathematics, computation, and rules. </em></p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8065-8a0f-f5bd2e075e57" class=""><em>Over time, as more people became willing to exchange real-world goods and services for this digital asset, the “coin” acquired price, liquidity, and economic meaning.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8043-9e2d-fac8e55b403f" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8001-8776-c9c91208bfed" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8061-a318-d93f6fb14c06" class="">第七个字，包。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8058-a843-cb49189093c3" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8057-a048-dc13fd03c683" class=""><em>Word 7: Wallet</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8001-a4a0-f0f8a7af1128" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8093-841d-df93c6991893" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8022-bba4-d8de7f1c72bc" class="">当你拥有了币，你需要一个安全的地方去存放它，而不是依赖任何银行或机构，这就是钱包。但事实上，钱包并不真正“存币”，币始终存在链上的某个地址。钱包是用户与这串地址建立连接的入口，本质上是一个携带控制界面的工具，用于生成、保管与使用私钥，而用户正是通过私钥在链上移动资产。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8020-aa5c-c6f74334fc65" class="image"><a href="image%206.png"><img style="width:331.9937438964844px" src="image%206.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8099-acea-d401f70fbb6e" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-801a-846b-ebb70ea37e49" class=""><em>Once you own coins, you need a secure way to hold and control them—without relying on any bank or institution. That is what a wallet is for. In reality, however, a wallet does not actually “store” coins; the coins always exist at specific addresses on the blockchain. A wallet is the interface that connects the user to those addresses. At its core, it is a tool for generating, safeguarding, and using private keys, and it is through these private keys that users move assets on-chain.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8092-a38b-cae39a53837b" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80c0-994d-ebe2e5dd4406" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8040-9a67-c1ba1c7cbb09" class="">在实际使用中，钱包主要分为软件钱包与硬件钱包。常见的软件钱包包括 MetaMask、Trust Wallet、Phantom、OKX Wallet 等，适合日常交互与链上应用；硬件钱包如 Ledger、Trezor，则通过离线保存私钥来提升安全性，更适合长期持有。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8025-a008-db314b7731f3" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-806f-89a6-ee1590406c09" class=""><em>In practice, wallets are mainly divided into software wallets and hardware wallets. Common software wallets include MetaMask, Trust Wallet, Phantom, and OKX Wallet, which are well suited for everyday interactions and on-chain applications. Hardware wallets such as Ledger and Trezor enhance security by keeping private keys offline, making them more suitable for long-term holding.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8047-9be6-daa99bd84117" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80d5-95ca-dfc1089e1feb" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-808a-b529-d4ae0954e96f" class="">美国SEC在2025年底出了一份《Crypto Asset Custody Basics for Retail Investors（散户投资者加密资产托管基础知识）》，进行投资者教育。<a href="https://t.co/gxgbmwVQCZ">https://investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/crypto-asset-custody-basics-retail-investors-investor-bulletin-0</a></p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-800d-b0fd-e47fde6f238e" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a9-984d-fd1105f56dc5" class=""><em>Toward the end of 2025, the U.S. Securities and Exchange Commission (SEC) released a document titled “Crypto Asset Custody Basics for Retail Investors,” aimed at providing investor education on the custody of crypto assets. </em><a href="https://t.co/gxgbmwVQCZ">https://investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/crypto-asset-custody-basics-retail-investors-investor-bulletin-0</a></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8009-9c40-cd6638bdc032" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-805a-bb08-e6b0a669e0f9" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8010-9801-ef3d16e859f4" class="">第八个字，所。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-809b-98a8-dc441a3e2723" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80ba-a1db-dadec3968806" class=""><em>Word 8: Exchange</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8090-97b2-dcdc283552b6" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-801d-8afb-e3c1c1457c93" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a6-becf-e272849b2ebf" class="">当币开始被频繁交换，市场便自然形成了交易所。类似现实世界中的股票交易所：撮合买卖、提供流动性、形成价格。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8070-ba29-c49e24c2c0fa" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a8-829e-de672dbe30aa" class=""><em>When coins begin to be traded frequently, markets naturally emerge in the form of exchanges. Much like stock exchanges in the real world, they match buyers and sellers, provide liquidity, and facilitate price discovery.</em></p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80c8-bbc1-f17577d0c94f" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8001-b741-fbac60beb3cd" class="image"><a href="57ebc3d7-0c64-46a1-b1b6-a33e2d2c4ed0.png"><img style="width:458.2937062937063px" src="57ebc3d7-0c64-46a1-b1b6-a33e2d2c4ed0.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8054-96d8-e5105fd6c88e" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80b8-a940-e6823e52a382" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-806e-adb9-d5bbebd8de5a" class="">“所”有两种形态：CEX中心化交易所与DEX去中心化（Decentralized）交易所。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8085-8ccc-d5d408b92935" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80da-8200-fc9b3419bbe3" class=""><em>Exchanges come in two main forms: CEX (Centralized Exchanges) and DEX (Decentralized Exchanges).</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80cc-be8e-fb9f354b7f75" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8079-8719-c5a4203fc2b0" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-800f-9c10-c6d61305f947" class="">CEX 类似传统交易所，由平台托管资产、维护撮合系统，CEX 的本质是中心化撮合 + 资产托管。<br/>它们提供的是效率、流动性与便利性，而非去信任本身。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8032-a5fb-d68311d9a14a" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-803e-8882-e167733728f5" class=""><em>CEXs resemble traditional exchanges — the platform custodies users&#x27; assets and maintains the matching engine. At their core, CEXs are centralized order matching + asset custody. What they offer is efficiency, liquidity, and convenience, not trustlessness itself.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8066-b2ad-ef7803abd3c0" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80fd-87ab-d843473d936f" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-805e-81fe-d49143a86fc3" class="">DEX 则将撮合与结算写入智能合约。钱包是入口，DEX 是交易场所，链上结算是最终状态，由这些组件组合形成了一个全新的金融体系，那就是DeFi，decentralized finance。聚合平台DeFiLlama 通过直接读取链上数据，对去中心化金融协议的 TVL、资金流向与生态分布进行聚合展示，查看各条链、各个DEX所的动态。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8050-937e-f61d5392f24a" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8089-b05c-ea9a2ef45f93" class=""><em>DEXs, on the other hand, embed both matching and settlement into smart contracts. The wallet serves as the entry point, the DEX as the trading venue, and on-chain settlement as the final state. Together, these components form an entirely new financial system — DeFi, or decentralized finance. Aggregator platforms like DeFiLlama read data directly from the chain to track TVL, capital flows, and ecosystem distribution across protocols, allowing users to monitor the dynamics of various chains and individual DEXs.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8047-8782-c8957cd95705" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80fd-85ad-d65b891cc75b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8001-a0ac-d9e256848cbc" class="">CEX 虽然不像 DEX 那样“链上透明”，但也有多个被广泛使用的聚合与数据平台，例如：CoinMarketCap（CMC）、CoinGecko。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8010-821b-d3505c824af6" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80f6-8c8a-d1e69fa63c9d" class=""><em>Although CEXs lack the on-chain transparency of DEXs, they too have widely used aggregation and data platforms, such as CoinMarketCap (CMC) and CoinGecko.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8064-bdef-dce4701a1017" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-802c-9941-e782f648c619" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8052-8b6a-f2ba55c9f352" class="">交易所的本质是平台生意：交易越多，佣金越多。为了引流，交易所开始像互联网公司一样运作——投放流量、制造话题、购买曝光。KOL 成为新的“渠道”，行情、叙事、热搜在社交媒体上被不断放大。对用户来说看到的是信息与机会；对交易所来说看到的是活跃度与手续费。市场的热闹，往往是精心运营出来的结果。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-804e-b94f-d0c329d554f9" class="image"><a href="image%207.png"><img style="width:331.9937438964844px" src="image%207.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-808c-b91a-f524f0619c77" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80ed-a1f5-ffd24355df09" class=""><em>The essence of an exchange is a platform business: the more trading volume, the more commission fees it earns. To attract users, exchanges have started operating like internet companies — investing in traffic acquisition, creating trending topics, and buying exposure. KOLs (Key Opinion Leaders) have become the new “distribution channels.” Market trends, narratives, and hot topics are constantly amplified across social media.<br/>To users, what they see is information and opportunities. To the exchanges, what they see is user activity and transaction fees. The excitement in the market is often the result of carefully orchestrated operations.</em></p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-804d-aeaa-e1c9b99d7220" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8007-9763-d89adccd87c6" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8005-a61c-c042546a1639" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-808a-8b5a-df2baaff190e" class="">第九个字，机。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-802d-ac6a-ef8e7d56d4f9" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80f4-a242-d2fdb4b92834" class=""><em>Word 9: Machine </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8015-8280-de7d97e731d6" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8069-8608-d2a3426de665" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80f6-8762-f06a0ebdc674" class="">比特币只能做转账，能做的事情非常有限。Vitalik认为，区块链不应该只是一套记账系统，而应该像一台任何人都能使用的“全球公共电脑”。于是以太坊和 EVM 被设计出来：开发者可以把规则写成代码，所有节点都按同样方式执行，结果一致才能上链。这台“机”让区块链第一次具备了通用计算能力。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-800b-b73b-eb3b92a016d7" class="image"><a href="image%208.png"><img style="width:331.9937438964844px" src="image%208.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8024-8e6d-dfe4b470c59e" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80ba-ab75-f1a6918b75a0" class=""><em>Bitcoin can only handle transfers; its capabilities are extremely limited. Vitalik believed that blockchain should not be merely a ledger system, but rather a “global public computer” accessible to anyone. Thus, Ethereum and the EVM (Ethereum Virtual Machine) were designed: developers can encode rules as code, all nodes execute it in the exact same way, and only consistent results are allowed on-chain. This “machine” gave blockchain its first true general-purpose computing capability.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8044-899c-ff082ad940e5" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8030-ba19-c05ec4acd6ce" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80df-a86d-f60969441a38" class="">在以太坊诞生之后，它很快从“智能合约的实验平台”演进为一个完整的应用生态。早期以 ERC-20 为代表的代币标准，推动了 ICO 与链上融资的出现；随后 DeFi 兴起，借贷、交易、稳定币等金融功能开始在链上原生运行；再到 NFT、DAO，让资产、组织和协作方式被重新定义。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80a4-9272-db70e8dc1734" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-806e-86a6-f18832318ee9" class="">
+</p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806f-a259-c7fad50aa5fe" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8092-8ce6-c005596438b5" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-808e-b8c7-c66431365d88" class="">第十个字，用。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-800a-b12a-d0cf0ba3be34" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80b7-ba62-db8849068f56" class=""><em>Word 10: Application </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ef-9aa4-e87a1d3fee92" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8016-8335-cddc7c052a08" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-800f-9f81-e64ddd49c449" class="">当区块链成为可编程的“机”——操作系统，接下来诞生的就是应用程序——dApp。把复杂的合约逻辑代码，封装成普通人能操作的界面：交易、借贷、铸造、投票，都被做成按钮和流程。对用户来说，用的是应用；对链来说，跑的是代码。dApp 是技术走向现实世界的最后一层。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80f8-81b7-c6da2b9825ea" class="image"><a href="image%209.png"><img style="width:332px" src="image%209.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80cf-8318-d0b612949aa0" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80a0-ab2f-fa540e6a06b7" class=""><em>After Ethereum&#x27;s launch, it quickly evolved from an “experimental platform for smart contracts” into a full-fledged application ecosystem.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80d0-ab41-e8727c926fd9" class=""><em>In its early days, token standards like ERC-20 drove the emergence of ICOs and on-chain fundraising.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8084-9ba9-ef04874cdf56" class=""><em>Then came the rise of DeFi, bringing native on-chain financial primitives such as lending, trading, and stablecoins.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80aa-a7d2-cb33f8dc40bc" class=""><em>Later, NFTs and DAOs redefined how assets are owned, how organizations are structured, and how collaboration takes place.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8004-9f98-df58348861fc" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80c3-ad2b-dafdab7d1464" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-805d-bf89-e4a26858a5ba" class="">dApp 本质上是一种“前后端分离”的应用：前端看起来和普通 App、网页没区别，按钮、流程、交互都很熟悉；但后台不是服务器，而是部署在链上的智能合约。</p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-806e-bf88-e296c562dabb" class="">用户每一次点击，本质上都是用钱包签名一条交易，请求合约按既定规则执行。没有客服能偷偷修改结果，也没有后台可以偷偷干预。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8090-9642-d408bd55543d" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-804a-b8e2-ca5587aa6912" class=""><em>dApps are essentially “front-end/back-end separated” applications: The front-end looks no different from a regular app or website — familiar buttons, flows, and interactions. But the back-end is not a traditional server; it is smart contracts deployed on the chain.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80f6-92c3-f11413bbac09" class=""><em>Every time a user clicks, what actually happens is that their wallet signs a transaction, requesting the contract to execute according to its pre-defined rules. There is no customer service that can secretly alter the outcome, and no back-end that can quietly intervene.</em></p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8002-ac9b-e33034b94ffb" class="image"><a href="image%2010.png"><img style="width:332px" src="image%2010.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8070-b035-faec8359be64" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8061-998f-d033fd6c8d4b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8046-951c-fc128d46c51e" class="">五类经典 dApp：<br/>1）DEX 交易（交换代币、流动性池），<br/>2）DeFi 金融（借贷、生息），<br/>3）资产类（NFT、代币化物品），<br/>4）DAO 治理（投票），<br/>5）基础设施（预言机、跨链桥）。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8055-bd68-c16d519226a2" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-805e-8e6f-d4a5e47674f3" class=""><em><strong>Five classic categories of dApps:</strong></em></p></div><div style="display:contents" dir="auto"><ol type="1" id="2e4405f4-12ca-8000-93a9-cdf72529b7c4" class="numbered-list" start="1"><li><em>DEX trading (token swaps, liquidity pools)</em></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2e4405f4-12ca-8079-b9bc-d7e0714f3202" class="numbered-list" start="2"><li><em>DeFi finance (lending, yield generation)</em></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2e4405f4-12ca-80f7-bd9e-db8342c2c482" class="numbered-list" start="3"><li><em>Asset-based (NFTs, tokenized items)</em></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2e4405f4-12ca-80d8-a585-e3a675cdc940" class="numbered-list" start="4"><li><em>DAO governance (voting)</em></li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="2e4405f4-12ca-8072-aceb-e81c8352066c" class="numbered-list" start="5"><li><em>Infrastructure (oracles, cross-chain bridges)</em></li></ol></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80b3-bdd1-f214747bf2c8" class="image"><a href="image%2011.png"><img style="width:709.9937744140625px" src="image%2011.png"/></a></figure></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80da-8d64-d85d1be18ddc" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8071-aaac-c4c7ce163aca" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8094-b985-f818b5e3e152" class="">第十一个字，迷。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8097-9b22-c598e2306529" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-808b-9ec1-e74645a141d0" class=""><em>Word 11: Meme </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ea-b6ce-d2674a8c0f18" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-807d-a6e3-eb6b455ebef4" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-807f-921e-dcbb76f65100" class="">迷因meme是web3最有意思的现象。典型的就是马斯克一句话让狗狗币（doge）大涨，甚至马斯克加入特朗普政府搞的政府效率部，英文缩写就叫DOGE。迷因不是宣传物料，而是群众一起讲故事。它传承互联网世界的“反权威、反精英、反包装”，不属于技术范畴，只问一个问题：你是不是“我们的人”。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8008-8335-e5390ac45f88" class="image"><a href="image%2012.png"><img style="width:331.9937438964844px" src="image%2012.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8098-9792-d229544f5588" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8027-92de-ef3305bd377c" class=""><em>Memes are the most fascinating phenomenon in Web3. A classic example is how a single tweet from Elon Musk could send Dogecoin (DOGE) soaring, and even when Musk joined the Trump administration to lead the Department of Government Efficiency — whose English abbreviation is conveniently DOGE.<br/>Memes are not marketing materials; they are collective storytelling by the crowd. They carry forward the internet-native spirit of “anti-authority, anti-elite, anti-packaging.” Memes do not belong to the realm of technology — they only ask one question: Are you one of “us”?</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8003-9876-f7c60a9c42f5" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-809c-a656-c132135f8250" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-802e-95ba-f272ef07109c" class="">meme 币大规模出现，不是因为玩笑，而是因为底层技术成熟了。  早期（只有比特币的时候），发币本身是高门槛的技术行为。  以太坊出现之后，智能合约标准化（ERC-20 ），钱包成熟，DEX、区块浏览器、RPC 基础设施齐全。  结果是任何人都可以几分钟内在链上发一个币。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-8094-bc72-eb414e925819" class="image"><a href="image%2013.png"><img style="width:332px" src="image%2013.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8068-961b-d8126f4c0047" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8092-abb3-f4d9a06da423" class=""><em>Meme coins emerged on a massive scale not because they were jokes, but because the underlying technology had matured.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80b8-bd52-e257a452d176" class=""><em>In the early days (when there was only Bitcoin), issuing a coin was a highly technical endeavor with significant barriers to entry.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80af-a33b-c888563c87b3" class=""><em>After Ethereum arrived, standardized smart contracts (ERC-20), mature wallets, DEXs, block explorers, and full RPC infrastructure became widely available.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-803a-b110-f3aa70a6a4ea" class=""><em>As a result, anyone can now launch a coin on-chain in just a few minutes.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8071-9c4b-e2e531e72a16" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-803c-9af9-feb31cd028ad" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8008-87e7-deb54cefeede" class="">那什么又是土狗？如果说meme 币是一种“叙事与文化现象”，土狗是其中最极端、最投机的一类。“土狗”是中文社区的俗称，不是正式分类，指的是：极低成本发币、极短生命周期、高度依赖拉盘叙事、高度不对称信息。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80b9-a7c8-d40dfa6f6ef0" class="image"><a href="image%2014.png"><img style="width:331.9937438964844px" src="image%2014.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8042-b1d7-e8ac27f3d883" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8064-852a-cee23c0a3c9b" class=""><em>So what exactly are “tu gou” (土狗, literally “local dogs”)?</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-804a-8b58-ed602e4aeea3" class=""><em>If meme coins can be seen as a “narrative and cultural phenomenon,” then tu gou represent the most extreme and speculative subset within that category.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80a4-90e7-d26af80c92ce" class=""><em>“Tu gou” is a colloquial term popular in the Chinese-speaking community; it is not a formal classification. It refers to coins that typically feature: extremely low cost to launch, extremely short lifespan, heavy reliance on pump narratives, and highly asymmetric information.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-800a-9fd0-f0303c0d1149" class="column-list"><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-808f-ab22-c1cd2f97c108" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80d7-894c-d48a462b87ba" class="">所有土狗 几乎都会披着 meme 的外衣</p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-809c-8605-e5b21bee6d45" class="">但不是所有 meme 币都是土狗</p></div></div></div><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-80fd-a1de-c444c78eaa7f" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8071-bf90-e5e392fbda76" class=""><em>Almost all “tu gou” (土狗) coins are disguised in the guise of memes.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80c3-a249-cdeceaee1955" class=""><em>But not all meme coins are “tu gou”.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80c0-b32f-e67c0124ef89" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80c1-b352-c3ddd3285a47" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8077-8979-c91a3c5a6ee1" class="">第十二个字，桥。 </h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806e-b310-c6b2186295ca" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-80e9-8e9c-f891e3efb640" class=""><em>Word 12: Bridge</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ea-b728-fa7d18b72879" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-801a-9dd6-f6a34638b379" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a5-bd44-f6ac6048ddbf" class="">区块链世界不是一条链，而是很多条链，有的快，有的便宜，有的安全，有的生态热闹。资产和用户不会只停在一条链上，哪里有机会，就想往哪里去，于是就有了桥。桥的作用很简单：把资产从一条链转移到另一条链。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80d6-b24b-d5dd895556e3" class="image"><a href="image%2015.png"><img style="width:331.9937438964844px" src="image%2015.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ef-84b2-f4960ea8a41f" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-807e-a4b9-c1efed2cf90f" class=""><em>The blockchain world is not a single chain, but many chains — some are fast, some are cheap, some are secure, and some have vibrant ecosystems. Assets and users do not stay confined to one chain; wherever there are opportunities, they want to go there. That is why bridges came into existence.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8024-985c-c200d9ddbd78" class=""><em>The function of a bridge is straightforward: it transfers assets from one chain to another.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8075-b381-d54f38dde3f0" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-803b-a3a3-c98ed687a9ba" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8056-81e7-cb64541353e6" class="">需要注意的是，桥在提高流动效率的同时，也往往成为风险最集中的地方，历史上不少重大安全事件都发生在桥上。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80ad-ac2f-df22057c14f3" class="image"><a href="image%2016.png"><img style="width:331.9937438964844px" src="image%2016.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8028-84fa-e3d2007d0bb5" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a7-a5b6-f770fd99ee09" class=""><em>It is important to note that while bridges greatly improve liquidity and efficiency, they have also become the places where risks are most concentrated. Historically, many of the largest security incidents in crypto have occurred on bridges.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8006-91b5-eeb6b83bfec1" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ab-9d33-e5a803995382" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8068-a86a-c805a9575cd0" class="">桥并不只是通道，它也是新的信任节点。资产一旦集中跨链流动，任何设计或安全上的问题，都会被迅速放大。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80e8-95e6-efbb2312bd93" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8096-bf9d-d10e118e4304" class=""><em>A bridge is not merely a passageway — it is also a new point of trust. Once assets are concentrated in cross-chain flows, any flaw in design or security can be rapidly amplified.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80b1-86c5-f9c313def2a6" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80d9-bd2e-dc5e243243d0" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8057-9c66-c607df79e93c" class="">第十三个字，库。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80fd-b93b-d300b54b24ba" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-804f-8bce-e27ed6410ec3" class=""><em>Word 13: Treasury </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80dc-afa2-c7642ca25889" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8003-a1a8-d65549bbf002" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-805b-86c1-c2ecb55e088c" class="">Digital Asset Treasury（DAT），数字资产财库或数字资产储备型公司，是指上市公司将比特币、以太坊等数字资产纳入其核心资产负债表，作为长期战略储备，而非短期投机资产。DAT 为传统投资者提供了一种合规、低门槛、无需自托管的方式，间接参与加密资产敞口。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-804e-b0f7-f0b23165102e" class="image"><a href="image%2017.png"><img style="width:332px" src="image%2017.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80dc-accc-cafcb597907b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8022-bf5a-c643083ebe18" class=""><em>Digital Asset Treasury (DAT), also known as a digital asset reserve company, refers to publicly listed companies that incorporate digital assets such as Bitcoin and Ethereum into their core balance sheet as long-term strategic reserves, rather than short-term speculative holdings.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-800f-b95e-d279d85e9e24" class=""><em>DATs provide traditional investors with a compliant, low-barrier, and self-custody-free way to gain indirect exposure to crypto assets.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80b4-ad5e-e64b08de38b9" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8086-a2d7-e7ae28037407" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8095-93ad-dc9f61e668d5" class="">第十四个字：物。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8065-a2aa-c9a63f5d6e78" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8081-93ab-e6510e1ee0dc" class=""><em>Word 14: RWA</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8012-839b-c7a6ed57151a" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80f2-8867-eff3f51ac79b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8074-87f6-f67a63cef412" class="">在区块链语境中，“物”指的是现实世界资产（Real World Assets，RWA）。它不是链上的原生代币，而是把现实中的“东西”——房产、债券、国债、票据、商品、应收账款，甚至艺术品——通过法律结构与技术手段映射到链上。链上看到的是 Token，链下对应的是真实、可计价、可追索的资产。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80cb-93a7-e35106c0f627" class="image"><a href="image%2018.png"><img style="width:331.9937438964844px" src="image%2018.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8064-90d2-ca0e5d71b0cd" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-808f-a6f4-e210d75d1e03" class=""><em>RWA are not native on-chain tokens. Instead, they involve mapping real-world “things” — such as real estate, bonds, government treasuries, invoices, commodities, accounts receivable, and even artworks — onto the chain through a combination of legal structures and technical mechanisms.<br/>What appears on-chain is a Token; what it corresponds to off-chain is a real, verifiable, and enforceable asset with tangible value and legal recourse.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-806d-b268-f54630ff45c0" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8046-850f-dbb49d85990b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-801a-8cc3-f4b1af44485e" class="">RWA 的核心意义在于把区块链从“只玩加密原生资产”拉回到真实经济：<br/>链不再只是炒币的场所，而成为资产登记、分拆、流转、清算的基础设施。它让原本门槛极高、流动性极差的实物资产，被拆分成可编程、可组合、可 24/7 交易的数字凭证。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8058-bccd-ef5d9dee1b18" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80fa-9068-e244435ac178" class=""><em>The core significance of RWA lies in pulling blockchain back from “only playing with crypto-native assets” to the real economy:</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80e2-8287-daa7c2b778c0" class=""><em>The chain is no longer merely a venue for speculating on coins; it becomes the underlying infrastructure for asset registration, fractionalization, transfer, and settlement. It transforms traditionally high-barrier, illiquid real-world assets into programmable, composable digital certificates that can be traded 24/7.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8004-adcb-fd4ecab8392d" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80a2-9460-e6650a96fa65" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-801b-99d7-c3224fe7e1a9" class="">硬币的另一面是——链上合约可以自动执行，但资产是否真实存在、是否被重复质押、违约时如何追索，仍然依赖链下制度。某种意义上，RWA 是区块链第一次正面拥抱现实世界的不完美。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ff-a7bc-ec2ffd070263" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-800f-901c-c2fc26d716b2" class=""><em>The flip side of the coin is this: while on-chain contracts can execute automatically, whether the underlying asset truly exists, whether it has been double-pledged, and how recourse is handled in case of default still depend entirely on off-chain legal and institutional frameworks.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80f9-94f6-d50b30e66bf5" class=""><em>In a certain sense, RWA represents the first time blockchain has directly confronted and embraced the imperfections of the real world.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8020-8f7c-f8501677c9d1" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-801d-b211-deaa8cff43a8" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-801e-aeaa-ec34d54cf67f" class="">因此，RWA 不只属于技术范畴，而是法律、监管、托管与信任的综合工程。</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80b0-9807-ed1f2e3eb89d" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80bf-aebd-de70543c25d9" class=""><em>Therefore, RWA is not merely a technical domain — it is a comprehensive engineering project that integrates law, regulation, custody, and trust.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80f8-a31b-fc86b637b193" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80e1-a126-fe4ef0865b54" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8090-923e-c410ed8aa2a9" class="">第十五个字，规。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8090-bb16-f1edf283abe8" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-804d-933f-eea411abfda5" class=""><em>Word 15: Regulation </em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-800a-a905-f72895f8f1f8" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8081-9e75-ee7f1d9eca51" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-801e-8761-ca2d2440a730" class="">如果说加密行业的前半段历史，是在灰色地带里野蛮生长，那么从2025 年开始，它正在不可逆地走向合规叙事。美国、香港推出稳定币与虚拟资产相关法案，明确监管边界；大型机构开始在清晰规则下进入。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80ee-ae63-f0b06cce866f" class="image"><a href="image%2019.png"><img style="width:331.9937438964844px" src="image%2019.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8050-adb0-f60608b13382" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-806a-8048-c11039f0760f" class=""><em>If the first half of crypto&#x27;s history was one of wild, unregulated growth in gray zones, then starting from 2025, the industry is irreversibly shifting toward a narrative of compliance.<br/>The United States and Hong Kong have introduced legislation related to stablecoins and virtual assets, clearly defining regulatory boundaries. Large institutions are now entering the space under well-defined rules.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ac-be0d-f692f8daa862" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80b0-9c07-f740a511a301" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8086-a308-fad1b3196bff" class="">第十六个字，私。</h2></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8054-8567-cdd1f64789f5" style="width:100%" class="column"><div style="display:contents" dir="auto"><h2 id="2e3405f4-12ca-8079-a3b2-ebbe2e19d8be" class=""><em>Word 16: Privacy</em></h2></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8088-978a-f026c6808037" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-805e-9d44-e9babb7f715b" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80c5-9d0b-d7fb392ef854" class="">当公链开始走向现实世界，一个无法回避的问题浮现出来：隐私 <a href="https://x.com/hashtag/privacy?src=hashtag_click">#privacy</a>  。对银行和传统金融而言，“账户、交易、资产全公开”的系统是不可接受的；没有隐私保护，就不可能承载机构资金，以及规模化推进。因此，隐私计算、权限链、选择性披露，正在成为公链与 <a href="https://x.com/hashtag/TradFi?src=hashtag_click">#TradFi</a>  融合的前提条件。</p></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-805c-8b14-f57e524497a4" class="image"><a href="image%2020.png"><img style="width:331.9937438964844px" src="image%2020.png"/></a></figure></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-8031-9f22-f27b011baba5" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80a4-8dd2-cfc340682cb3" class=""><em>As public blockchains begin to integrate with the real world, one unavoidable issue emerges: privacy.<br/>For banks and traditional finance, a system where “accounts, transactions, and assets are fully public” is simply unacceptable. Without privacy protections, it is impossible to onboard institutional capital or achieve large-scale adoption.<br/>Therefore, privacy-preserving computation, permissioned chains, and selective disclosure are becoming essential prerequisites for the fusion between public blockchains and #TradFi.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-803d-a91f-fa8c32d1f496" class="column-list"><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-80ad-a6a2-cbd3d79572dd" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8077-b985-e76cbafb48d2" class="">但另一种声音同样强烈：<a href="https://x.com/hashtag/Web3?src=hashtag_click">#Web3</a>  的初心，正是去中心化与公开可验证；一旦为机构让步，是否意味着与传统体系“同流合污”？围绕隐私、公链、机构化的争论正在加剧——从<a href="https://x.com/The_DTCC">@The_DTCC</a> 与<a href="https://x.com/CantonNetwork">@CantonNetwork</a> 合作，到“谁在定义未来金融基础设施”的分歧。隐私，是技术问题，也是价值观的分水岭。</p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-8099-82b3-f4c3dff629f9" class="">
+</p></div></div></div><div style="display:contents" dir="auto"><div id="2e3405f4-12ca-804d-8e5f-f9c9c8e4b344" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80aa-8801-c01b6d7833f7" class=""><em>But there is an equally strong counter-voice:</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-802b-9f7f-d90c8b25c5da" class=""><em>The original spirit of #Web3 is decentralization and public verifiability. If we make concessions for institutions, does that mean we are “colluding with” or becoming indistinguishable from the traditional system?</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-805f-a1e8-d25f85752cc6" class=""><em>The debate around privacy, public blockchains, and institutionalization is intensifying — from the collaboration between @The_DTCC and @CantonNetwork, to the fundamental disagreement over “who gets to define the future financial infrastructure.”</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80b0-abc6-fa47e2f57253" class=""><em>Privacy is not only a technical issue; it is also a watershed of values.</em></p></div></div></div></div></div><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-80f2-b120-fa4117712849" class="column-list"><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-80e6-b4bf-f6d5f5410933" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-809e-b3b3-c5c88bda79f1" class="">进步，无时无刻不在向前。</p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8027-8119-f413f3549a94" class="">争论，永远与进步共生。</p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-806c-a131-d85fca7ca383" class="">现在，就让我们相信，金融市场基础设施的变革正在发生，也一定会带我们走入新的未来。在这条世界线，我们相信带来可编程隐私的Canton.</p></div></div></div><div style="display:contents" dir="auto"><div id="2e4405f4-12ca-80f5-923a-d17fb788b0fb" style="width:100%" class="column"><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8062-8b86-c6d1f429b29e" class=""><em>Progress moves forward every single moment.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8044-9280-dff2743f6023" class=""><em>Debate is forever intertwined with progress.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-80d0-8ba9-f2e1ba9185ef" class=""><em>Now, let us believe that the transformation of financial market infrastructure is underway—and it will surely lead us into a new future.</em></p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-807d-8eeb-c9245cb20013" class=""><em>In this timeline, we believe in Canton, the one that brings programmable privacy.</em></p></div></div></div></div></div><div style="display:contents" dir="ltr"><figure id="2e3405f4-12ca-80ca-8cc8-f12bab5d14d7" class="image"><a href="image%2021.png"><img style="width:2400px" src="image%2021.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-8074-b31a-f181aef67098" class="">
+</p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-809c-8458-deb47902853d" class="">Zen Koin Lab 無相實驗室是個獨立web3 研究小組。</p></div><div style="display:contents" dir="auto"><p id="2e4405f4-12ca-807a-aab7-da8cdc9727b8" class=""><em><strong>Zen Koin Lab</strong></em> is an independent web3 research group. </p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-8096-8e8b-eb6c463ff763" class="">website: <a href="https://t.co/834pZXQBxE">https://zkoinlab.org</a></p></div><div style="display:contents" dir="auto"><p id="2e2405f4-12ca-80ca-b02a-fcd6b17ea867" class="">X: @zkoinlab</p></div><div style="display:contents" dir="auto"><p id="2e3405f4-12ca-80a0-8fc1-cf064b3a5181" class="">TGgroup: <a href="https://t.me/+x3_QWE5AalE5Zjhl">https://t.me/+x3_QWE5AalE5Zjhl</a></p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
