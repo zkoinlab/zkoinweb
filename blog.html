@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - zen koin lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #fbf9ed;
+            color: #0e2439;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* 侧边导航栏样式 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #0e2439;
+            padding: 30px 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar-logo {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(251, 249, 237, 0.2);
+        }
+        
+        .sidebar-logo img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-logo-text {
+            color: #fbf9ed;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .nav-menu a {
+            display: block;
+            color: rgba(251, 249, 237, 0.7);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-size: 15px;
+        }
+        
+        .nav-menu a:hover {
+            background-color: rgba(251, 249, 237, 0.1);
+            color: #fbf9ed;
+            transform: translateX(5px);
+        }
+        
+        .nav-menu a.active {
+            background-color: rgba(251, 249, 237, 0.15);
+            color: #fbf9ed;
+            font-weight: 600;
+        }
+        
+        /* 移动端菜单按钮 */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background-color: #0e2439;
+            color: #fbf9ed;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        /* 主内容区域 */
+        .main-content {
+            margin-left: 250px;
+            padding: 40px;
+            max-width: 1200px;
+        }
+        
+        /* 页面头部 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(14, 36, 57, 0.1);
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #0e2439;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            color: #0e2439;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        
+        /* 分类过滤器 */
+        .filter-section {
+            margin-bottom: 40px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: rgba(14, 36, 57, 0.05);
+            border: 2px solid transparent;
+            border-radius: 25px;
+            color: #0e2439;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover {
+            background-color: rgba(14, 36, 57, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .filter-btn.active {
+            background-color: #0e2439;
+            color: #fbf9ed;
+            border-color: #0e2439;
+        }
+        
+        /* 博客文章列表 */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .blog-card {
+            background-color: rgba(14, 36, 57, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(14, 36, 57, 0.1);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(14, 36, 57, 0.15);
+        }
+        
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0e2439 0%, #1a4b7a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fbf9ed;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+        
+        .blog-card-content {
+            padding: 25px;
+        }
+        
+        .blog-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #0e2439;
+            opacity: 0.6;
+        }
+        
+        .blog-category {
+            background-color: rgba(14, 36, 57, 0.1);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .blog-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: #0e2439;
+            line-height: 1.3;
+        }
+        
+        .blog-excerpt {
+            color: #0e2439;
+            opacity: 0.8;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            color: #0e2439;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .read-more::after {
+            content: ' →';
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        
+        .read-more:hover::after {
+            transform: translateX(5px);
+        }
+        
+        /* 空状态 */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: #0e2439;
+            opacity: 0.5;
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px 20px;
+            border-top: 2px solid rgba(14, 36, 57, 0.1);
+            color: #0e2439;
+            opacity: 0.7;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 70px 20px 20px;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 移动端菜单按钮 -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    
+    <!-- 侧边导航栏 -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <img src="logo.png" alt="zen koin lab logo">
+            <div class="sidebar-logo-text">無相實驗室</div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="index.html#introduction">Introduction</a></li>
+            <li><a href="index.html#mission">Mission</a></li>
+            <li><a href="index.html#vision">Vision</a></li>
+            <li><a href="index.html#values">Values</a></li>
+            <li><a href="index.html#strategic-focus">Strategic Focus</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <header class="page-header">
+            <h1>Blog</h1>
+            <p>Thoughts on Privacy, AI, and Decentralization</p>
+        </header>
+        
+        <!-- 分类过滤 -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterPosts('all')">All Posts</button>
+            <button class="filter-btn" onclick="filterPosts('privacy')">Privacy Tech</button>
+            <button class="filter-btn" onclick="filterPosts('ai')">AI & ML</button>
+            <button class="filter-btn" onclick="filterPosts('web3')">Web3</button>
+            <button class="filter-btn" onclick="filterPosts('research')">Research</button>
+        </div>
+        
+        <!-- 博客文章网格 -->
+        <div class="blog-grid" id="blogGrid">
+            <!-- 第一篇文章：16words-of-web3 -->
+            <article class="blog-card" data-category="web3">
+                <div class="blog-card-image">📖</div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span class="blog-category">Web3</span>
+                        <span>Jan 16, 2026</span>
+                    </div>
+                    <h3>16words-of-web3</h3>
+                    <p class="blog-excerpt">Exploring the fundamental concepts and principles that define the Web3 ecosystem and decentralized future.</p>
+                    <a href="https://acute-saturnalia-e21.notion.site/16words-of-web3-2e2405f412ca8012844fca3528c37e3e" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+            </article>
+            
+            <!-- 未来的文章将在这里添加 -->
+        </div>
+        
+        <!-- 空状态（当没有文章时显示） -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-state-icon">📝</div>
+            <h3>No posts found</h3>
+            <p>Stay tuned for upcoming articles</p>
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 zen koin lab. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // 移动端菜单切换
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        // 移动端点击导航项后关闭菜单
+        function closeMenuOnMobile() {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.remove('active');
+            }
+        }
+        
+        // 过滤博客文章
+        function filterPosts(category) {
+            const cards = document.querySelectorAll('.blog-card');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const blogGrid = document.getElementById('blogGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            // 更新按钮状态
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // 过滤文章
+            let visibleCount = 0;
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // 显示或隐藏空状态
+            if (visibleCount === 0) {
+                blogGrid.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                blogGrid.style.display = 'grid';
+                emptyState.style.display = 'none';
+            }
+        }
+        
+        // 点击侧边栏外部关闭菜单（移动端）
+        document.addEventListener('click', function(event) {
+            if (window.innerWidth <= 768) {
+                const sidebar = document.getElementById('sidebar');
+                const menuToggle = document.querySelector('.menu-toggle');
+                
+                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
+                    sidebar.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
